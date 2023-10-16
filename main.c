@@ -2,9 +2,12 @@
 
 #include "src/plugin_handler.h"
 #include "src/arghandler.h"
+#include "src/project_builder.h"
 
 int main(int argc, char** argv){
     PluginArray* handle = PluginArray_LoadAll();
-    HandleArgs(handle, argc, argv);
+
+    char* projName = HandleArgs(handle, argc, argv);
+    if(projName[0] != '\0') BuildProject(handle, projName);
     return 0;
 }
