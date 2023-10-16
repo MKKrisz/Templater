@@ -16,7 +16,7 @@ typedef struct Plugin{
     void (*Main_Include)(FILE* f);
     void (*Main_ExtendBody_Start)(FILE* f);
     void (*Main_ExtendBody_End)(FILE* f);
-    void (*Files_Manipulate)();
+    void (*Files_Manipulate)(const char* rootpath);
 } Plugin;
 
 Plugin loadPlugin(const char* path);
