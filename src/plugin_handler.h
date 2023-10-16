@@ -4,6 +4,8 @@
 
 #include "plugin.h"
 
+#define PLUGIN_DIR "/Plugins/"
+
 
 typedef struct{
     Plugin* Elements;
@@ -15,6 +17,8 @@ PluginArray* PluginArray_Make();
 void PluginArray_Add(PluginArray* arr, Plugin p);
 
 void MassEnable(PluginArray* arr, const char* str);
+void MassPrintHelp(PluginArray* arr);
+
 void CMake_MassInclusion(PluginArray* arr, FILE* f);
 void CMake_MassAddition(PluginArray* arr, FILE* f);
 void CMake_MassLinking(PluginArray* arr, FILE* f);

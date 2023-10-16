@@ -1,3 +1,8 @@
+#include <unistd.h>
+#include <dirent.h>
+#include <assert.h>
+#include <string.h>
+
 #include "plugin_handler.h"
 
 PluginArray* PluginArray_Make(){
@@ -26,6 +31,14 @@ void MassEnable(PluginArray* arr, const char* str){
     for(int i = 0; i<arr->Count; i++){
         if(arr->Elements[i].CheckEnable != NULL && (*arr->Elements[i].CheckEnable)(str)){
             arr->Elements[i].enabled = true;
+        }
+    }
+}
+
+void MassPrintHelp(PluginArray* arr){
+    for(int i = 0; i < arr->Count; i++){
+        if(arr->Elements[i].PrintHelp != NULL){
+            (*arr->Elements[i].PrintHelp)();
         }
     }
 }
@@ -88,7 +101,23 @@ void Files_MassManipulate(PluginArray* arr){
 
 PluginArray* PluginArray_LoadAll(){
     PluginArray* arr = PluginArray_Make();
-    //TODO: this
+
+    DIR* plugindir = opendir(PLUGIN_DIR);
+    struct dirent* entry;
+
+    assert(plugindir == NULL);
+
+    while((entry = readdir(plugindir)) != NULL){
+        if(strstr(".so", entry->d_name)){
+            char path[256];
+            strcpy(path, PLUGIN_DIR);
+            strcat(path, entry->d_name);
+            PluginArray_Add(arr, loadPlugin(path));
+        }
+    }
+
+
+
     return arr;
 }
 

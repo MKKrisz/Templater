@@ -4,4 +4,4 @@
 
 #include "plugin_handler.h"
 
-void HandleArgs(int argc, char** argv);
+void HandleArgs(PluginArray* arr, int argc, char** argv);

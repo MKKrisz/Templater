@@ -15,6 +15,7 @@ Plugin loadPlugin(const char* path){
 
     op.enabled = false;
     op.CheckEnable = dlsym(op.handle, "CheckEnable");
+    op.PrintHelp = dlsym(op.handle, "PrintHelp");
     op.CMake_Inclusion = dlsym(op.handle, "CMake_Inclusion");
     op.CMake_Addition = dlsym(op.handle, "CMake_Addition");
     op.CMake_Linking = dlsym(op.handle, "CMake_Linking");

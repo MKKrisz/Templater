@@ -9,6 +9,7 @@ typedef struct Plugin{
     void* handle;
     bool enabled;
     bool (*CheckEnable)(const char* c);
+    void (*PrintHelp)();
     void (*CMake_Inclusion)(FILE* f);
     void (*CMake_Addition)(FILE* f);
     void (*CMake_Linking)(FILE* f);
