@@ -1,0 +1,119 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.25"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "src",
+					"jsonFile" : "directory-src-Debug-b6cf2213fc5053b67c22.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.25"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src"
+				},
+				{
+					"build" : "Plugins",
+					"jsonFile" : "directory-Plugins-Debug-1e236abf0e55749acbab.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.25"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Plugins",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2
+					],
+					"name" : "templater",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "findSDL2::@c77a5b2b14e745dcbdb5",
+					"jsonFile" : "target-findSDL2-Debug-6aff05045e55e02d6fd3.json",
+					"name" : "findSDL2",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "includeDebugmalloc::@c77a5b2b14e745dcbdb5",
+					"jsonFile" : "target-includeDebugmalloc-Debug-6505f8ad6553b6bf0534.json",
+					"name" : "includeDebugmalloc",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "linkMath::@c77a5b2b14e745dcbdb5",
+					"jsonFile" : "target-linkMath-Debug-8e8618c312316c92df9c.json",
+					"name" : "linkMath",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "templater::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-templater-Debug-cf28eb7fee04ac96c68e.json",
+					"name" : "templater",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/krisz/Dokumentumok/Repos/c/templater/build",
+		"source" : "/home/krisz/Dokumentumok/Repos/c/templater"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}

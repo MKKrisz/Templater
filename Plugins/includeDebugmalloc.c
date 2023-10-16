@@ -1,4 +1,5 @@
 #include <string.h>
+#include <errno.h>
 
 #include "includeDebugmalloc.h"
 
@@ -36,6 +37,7 @@ void Files_Manipulate(const char* root_path){
 void Copy(const char* srcpath, const char* dstpath){
     FILE* src = fopen(srcpath, "r");
     FILE* dst = fopen(dstpath, "a");
+    printf("%d", errno)
 
     char c = fgetc(src);
     while(c != EOF){

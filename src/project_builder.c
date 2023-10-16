@@ -78,8 +78,9 @@ void BuildProject(PluginArray* arr, const char* name){
     fclose(Main);
     fclose(CMake);
 
+    Files_MassManipulate(arr, name);
+
     chdir(BuildDir);
     system("cmake ..");
 
-    Files_MassManipulate(arr, name);
 }
