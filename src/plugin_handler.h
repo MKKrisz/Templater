@@ -4,7 +4,7 @@
 
 #include "plugin.h"
 
-#define PLUGIN_DIR "/Plugins/"
+#define PLUGIN_DIR "Plugins/"
 
 
 typedef struct{

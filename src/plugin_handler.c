@@ -2,6 +2,7 @@
 #include <dirent.h>
 #include <assert.h>
 #include <string.h>
+#include <errno.h>
 
 #include "plugin_handler.h"
 
@@ -98,22 +99,24 @@ void Files_MassManipulate(PluginArray* arr){
 }
 
 
-
 PluginArray* PluginArray_LoadAll(){
     PluginArray* arr = PluginArray_Make();
 
-    DIR* plugindir = opendir(PLUGIN_DIR);
+    DIR* plugindir = opendir("Plugins");
+
+    //printf("%d", errno);
+
     struct dirent* entry;
-
-    assert(plugindir == NULL);
-
-    while((entry = readdir(plugindir)) != NULL){
-        if(strstr(".so", entry->d_name)){
+    assert(plugindir != NULL);
+    entry = readdir(plugindir);
+    while(entry != NULL){
+        if(strstr(entry->d_name, ".so") != NULL){
             char path[256];
             strcpy(path, PLUGIN_DIR);
             strcat(path, entry->d_name);
             PluginArray_Add(arr, loadPlugin(path));
         }
+        entry = readdir(plugindir);
     }
 
 
