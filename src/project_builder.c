@@ -39,7 +39,7 @@ void MakeMain(PluginArray* arr, FILE* f){
     Main_MassExtend_Start(arr, f);
 
     //TODO: Make this one line a plugin aswell
-    fprintf(f, "    printf(\"Hello World!\")\n");
+    fprintf(f, "    printf(\"Hello World!\");\n");
     Main_MassExtend_End(arr, f);
     fprintf(f, "    return 0;\n"
                "}\n");

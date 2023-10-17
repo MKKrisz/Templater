@@ -9,5 +9,6 @@ int main(int argc, char** argv){
 
     char* projName = HandleArgs(handle, argc, argv);
     if(projName[0] != '\0') BuildProject(handle, projName);
+    PluginArray_Dealloc(handle);
     return 0;
 }
