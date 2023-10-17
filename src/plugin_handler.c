@@ -3,8 +3,22 @@
 #include <assert.h>
 #include <string.h>
 #include <errno.h>
+#include <sys/stat.h>
 
 #include "plugin_handler.h"
+
+char* GetPluginPath(){
+    char* home = getenv("HOME");
+    int homelen = strlen(home);
+    char* op = malloc(sizeof(char) * (homelen + 30));
+    strcpy(op, home);
+    strcat(op, "/.config/");
+    strcat(op, "templater/");
+    mkdir(op, 0700);
+    strcat(op, "Plugins/");
+    mkdir(op, 0700);
+    return op;
+}
 
 PluginArray* PluginArray_Make(){
     PluginArray* op = malloc(sizeof(PluginArray));
@@ -15,6 +29,7 @@ PluginArray* PluginArray_Make(){
 
     return op;
 }
+
 void PluginArray_Extend(PluginArray* arr, int size){
     arr->Elements = realloc(arr->Elements, sizeof(Plugin) * size);
     arr->Capacity = size;
@@ -105,23 +120,26 @@ void Files_MassManipulate(PluginArray* arr, const char* root_path){
 PluginArray* PluginArray_LoadAll(){
     PluginArray* arr = PluginArray_Make();
 
-    DIR* plugindir = opendir("Plugins");
+    char* pluginpath = GetPluginPath();
+    int pplen = strlen(pluginpath);
+    DIR* plugindir = opendir(pluginpath);
 
-    //printf("%d", errno);
+    //printf("%d\n", errno);
 
     struct dirent* entry;
     assert(plugindir != NULL);
     entry = readdir(plugindir);
     while(entry != NULL){
         if(strstr(entry->d_name, ".so") != NULL){
-            char path[256];
-            strcpy(path, PLUGIN_DIR);
+            int elen = strlen(entry->d_name);
+            char path[elen + pplen + 1];
+            strcpy(path, pluginpath);
             strcat(path, entry->d_name);
             PluginArray_Add(arr, loadPlugin(path));
         }
         entry = readdir(plugindir);
     }
-
+    free(pluginpath);
 
 
     return arr;

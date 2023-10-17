@@ -1,7 +1,22 @@
 #include <string.h>
 #include <errno.h>
+#include <stdlib.h>
+#include <sys/stat.h>
 
 #include "includeDebugmalloc.h"
+
+char* GetPluginPath(){
+    char* home = getenv("HOME");
+    int homelen = strlen(home);
+    char* op = malloc(sizeof(char) * (homelen + 30));
+    strcpy(op, home);
+    strcat(op, "/.config/");
+    strcat(op, "templater/");
+    mkdir(op, 0700);
+    strcat(op, "Plugins/");
+    mkdir(op, 0700);
+    return op;
+}
 
 char* GetName(){
     return "IncludeDebugmalloc";
@@ -31,13 +46,19 @@ void Files_Manipulate(const char* root_path){
     strcpy(dstpath, root_path);
     strcat(dstpath, "/debugmalloc.h");
 
-    Copy("Plugins/debugmalloc.h", dstpath);
+    char* pp = GetPluginPath();
+    int pplen = strlen(pp);
+    char dmp[pplen + 15];
+    strcpy(dmp, pp); strcat(dmp, "debugmalloc.h");
+    Copy(dmp, dstpath);
+
+    free(pp);
 }
 
 void Copy(const char* srcpath, const char* dstpath){
     FILE* src = fopen(srcpath, "r");
     FILE* dst = fopen(dstpath, "a");
-    printf("%d", errno)
+    printf("%d", errno);
 
     char c = fgetc(src);
     while(c != EOF){

@@ -4,14 +4,13 @@
 
 #include "plugin.h"
 
-#define PLUGIN_DIR "Plugins/"
-
-
 typedef struct{
     Plugin* Elements;
     int Count;
     int Capacity;
 } PluginArray;
+
+char* GetPluginPath();
 
 PluginArray* PluginArray_Make();
 void PluginArray_Add(PluginArray* arr, Plugin p);
