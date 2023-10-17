@@ -2,10 +2,12 @@
 A tool to easily create (and maybe later on manage) cmake projects tailored to anyone's needs
 
 ## Building
+Currently only tested on Arch, definetly won't work on Windows.
   - **Step 1:** Create a build directory
   - **Step 2:** From the directory, run `cmake ..`
   - **Step 3:** then `make`
-  - **Step 4:** *(Optional)* If you want the `-d` flag to work, copy the [debugmalloc.h](Plugins/debugmalloc.h) file into `build/Plugins`
+  - **Step 4:** Copy the contents of `build/Plugins` to `${XDG_CONFIG_HOME}/templater/Plugins`
+  - **Step 5:** *(Optional)* Copy `debugmalloc.h` from the `Plugins` folder to `${XDG_CONFIG_HOME}/templater/Plugins` if you want the `-d` flag to work
   
 ## Contributing
 For now, only plugin contributions are allowed.
